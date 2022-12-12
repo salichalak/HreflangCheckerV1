@@ -19,18 +19,18 @@ javascript: (async () => {
         console.error('Canonical not found!');
     }
 
-    let hreflangsArr = [];
+    let hreflangs = [];
 
     for (let link of links) {
         let current = {};
 
-        current.hreflang = link.hreflang ?
-            link.hreflang :
-            'Not found';
+        current.hreflang = link.hreflang 
+        ? link.hreflang 
+        : 'Not found';
 
-        current['URL'] = link.href ?
-            link.href :
-            'Not found';
+        current['URL'] = link.href 
+        ? link.href 
+        : 'Not found';
 
         let response = await fetch(link.href).then((res) => {
             return res;
@@ -38,12 +38,12 @@ javascript: (async () => {
 
         current['Status Code'] = response.status;
 
-        current["Redirected to"] = response.redirected === true ?
-            response.url :
-            null;
+        current["Redirected to"] = response.redirected === true 
+        ? response.url 
+        : null;
 
-        hreflangsArr.push(current);
+        hreflangs.push(current);
     }
 
-    console.table(hreflangsArr);
+    console.table(hreflangs);
 })();
